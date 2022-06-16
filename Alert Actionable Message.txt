@@ -1,0 +1,201 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "spacing": "None",
+      "style": "default",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Risky Sign In Alert",
+                  "weight": "Bolder",
+                  "color": "Accent",
+                  "size": "Medium"
+                }
+              ],
+              "width": "stretch",
+              "padding": "None"
+            },
+            {
+              "type": "Column",
+              "items": [
+                {
+                  "type": "Image",
+                  "id": "4b3986aa-ca62-8df9-f4c9-5d9bc8585978",
+                  "url": "LOGO_URL",
+                  "horizontalAlignment": "Right",
+                  "size": "Medium"
+                }
+              ],
+              "width": "auto",
+              "verticalContentAlignment": "Center",
+              "padding": "None",
+              "style": "emphasis"
+            }
+          ],
+          "padding": "None"
+        }
+      ],
+      "padding": "None"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Container",
+          "id": "812d2dc4-2325-d754-4023-139eed85eaa7",
+          "padding": "None",
+          "items": [
+            {
+              "type": "TextBlock",
+              "id": "c04ed516-6a73-b943-60d4-4f8860e49ad2",
+              "text": "Alert Details",
+              "wrap": true,
+              "weight": "Bolder",
+              "color": "Accent",
+              "size": "Medium"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "User Name: @{items('Apply_to_each_2')?['accountName']}",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Unfamiliar IP Address: @{items('Apply_to_each_2')?['logonIp']}",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Unfamiliar IP Location: @{items('Apply_to_each_2')?['logonLocation']}",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Date and Time: @{items('Apply_to_each_2')?['logonDateTime']}",
+          "wrap": true,
+          "spacing": "Small",
+          "size": "Small"
+        },
+        {
+          "type": "Container",
+          "id": "b677fc53-2011-2140-3d87-49f238f2f72f",
+          "padding": "None",
+          "items": [
+            {
+              "type": "Container",
+              "id": "3a04cb18-af38-1701-f12f-b17eb37f8576",
+              "padding": "None",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "id": "4003b0b5-6664-76d9-a921-aaa092c572c1",
+                  "text": "Alert Category: @{items('Apply_to_each')?['category']}",
+                  "wrap": true,
+                  "spacing": "Small",
+                  "size": "Small"
+                }
+              ],
+              "separator": true
+            },
+            {
+              "type": "TextBlock",
+              "id": "0a8aa7c3-2bf7-e4d6-ad98-182ec58c2f42",
+              "text": "Alert Severity: @{items('Apply_to_each')?['severity']}",
+              "wrap": true,
+              "spacing": "Small",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "id": "560d5272-d530-b990-d34a-14da5981e643",
+              "text": "Alert Description: @{items('Apply_to_each')?['description']}",
+              "wrap": true,
+              "spacing": "Small",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "id": "d69f39cc-3547-aa59-f9a2-17b97d73cec0",
+              "text": "Alert Action",
+              "wrap": true,
+              "size": "Medium",
+              "weight": "Bolder",
+              "color": "Accent"
+            }
+          ]
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "AlertResponse",
+          "choices": [
+            {
+              "title": "confirmCompromised",
+              "value": "confirmCompromised"
+            },
+            {
+              "title": "dismiss",
+              "value": "dismiss"
+            }
+          ],
+          "spacing": "None",
+          "isRequired": true,
+          "separator": true
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Http",
+              "title": "Submit",
+              "method": "POST",
+              "url": "https://AZUREDATACENTERURL.azure.com:443",
+              "body": "{\"AlertResponse\": \"{{AlertResponse.value}}\"}",
+              "headers": [
+                {
+                  "name": "Authorization",
+                  "Value": ""
+                },
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "isPrimary": true,
+              "style": "positive"
+            }
+          ],
+          "horizontalAlignment": "Center"
+        }
+      ],
+      "padding": {
+        "top": "Small",
+        "bottom": "Default",
+        "left": "Default",
+        "right": "Default"
+      },
+      "spacing": "None",
+      "style": "emphasis"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0",
+  "padding": "None",
+  "hideOriginalBody": "true",
+  "originator": "PROVIDER_ID_APP_FROM_DEVELOPER_DASHBOARD",
+  "correlationid":PUT_YOUR_Corrleation_ID_GUID
